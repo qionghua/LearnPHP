@@ -1,0 +1,82 @@
+Linux任务放到后台
+	1、Ctrl+z  将任务挂起
+	2、jobs 查询任务号
+	3、bg %n 将任务放到后台运行
+	4、fg %n 将任务放到前台运行
+终端快捷键
+	1、快速移动到行首 ctrl+a
+	2、快速移动到行尾 Ctrl+e
+	3、快速移动到单词开头/结尾 Ctrl + 左方向键/右方向键
+	4、清除整行输入 Ctrl + U
+	5、清除光标前的输入 Ctrl+w
+	6、清除光标后的输入 ctrl+k
+PHP学习
+
+一 基本知识
+	1、引用
+	  php语言中有引用的概念，相当于指针。如 $a = &$b
+	  <?php
+			$a = 1;
+			$b = &$a;
+			$b = "2$b";
+			echo "$a,$b"
+      ?>
+	2、运算符优先级
+	  (new) > (++、--) > (*、/、%) > (+、-) > （&&）> (||) > (?:) > (==) > (and) > (xor) > (or)
+
+二、WEB编程
+	1、_GET和_POST获取表单数据
+	2、处理多选框时，要在html中定义成数组的形式，如<input name="hobby[]" type="checkbox" value="sport">
+
+三、内置函数
+	1、数组内置函数
+	   (1) for、foreach循环输出数组元素
+			for:按整数顺序索引排列数组
+			foreach($array as $value)
+			foreach($array as $key=>$value)
+	   (2) print_r() 查看数组结构，如果在输出前输出<pre>,页面输出的结果会更整洁
+	   (3) count() 计算数组元素的个数
+	   (4) array_chunk($array,$size,$preserve) chunk:块，数组块，组块； 函数功能时对一个数组进行分割,$array,原数组；$size,分割的数组大小,大于0；$preserve,是否使用原索引。
+	   (5) array_merge($array...) 数组合并，只接受array类型的参数，合并失败，返回null；如果数组索引时数字索引，会从‘0’开始编号索引；如果时字符串索引，则会出现覆盖的情况。
+	   (6) current() 返回数组当前的元素
+	   (7) prev() 返回当前元素的前一个元素，该方法会移动数组内部的指针,如果不存在前一个返回false
+	   (8) next() 返回当前元素的后一个元素，该方法可以移动数组内部的指针,如果不存在则返回false
+	   (9) end() 返回最后一个元素，该方法会移动数组内部的指针
+	   (10) sort($array) 对数组进行排序
+	   (11) rsort($array)  对数组逆序排列
+	   (12) asort($array) 对数组元素进行排序，保持数组的原索引关系不变
+	   (13) ksort($array) 对数组元素按索引名排序，保持原数组索引关系保持不变
+	   (14) arsot()
+	   (15) krsort()
+	   (16) shuffle() 随机打乱数组，删除原来的索引
+	   (17) array_reverse($array,$preserve) 将原数组按反序排序，返回排序后的数组，$preserve 是否保留索引，默认为false.
+	   (18) reset() 重置数组，将数组内部指针移动到第一个元素，并返回第一个元素。，如果数组为空，返回false 
+	   (19) list(), 将数组元素赋值给变量，严格讲，和array一样，并不是函数，仅能用于数字索引的数组，且假定索引从0开始。
+	   (20) 栈操作，array_push(array,mixed value)将一个或多个元素压栈，返回数组中新的元素总数; array_pop(array)，出栈，栈为空，返回null
+	   (21) 队列操作，array_shift(array) 删除第一个元素并返回； array_unshift(array，val1，val2,...),将参数按照顺序加入队列中
+	   (22) array_change_key_case(array，CASE_LOWER/CASE_UPPER) 将字符串索引的转换为大小写,对数字索引不起作用
+	   (23) 集合操作：交集，array_intersect(array,arr1...)求数组元素的交集，array_intersect_assoc()求数组键-值的交集；差集，array_diff(array,arr1...) 求数组的差集，array_diff_assoc(array,arr1...)求键-值的差集 intersect 交集；相交 diff 
+	   (24) array_flip() 交换数组的键-值对，如果同一个值出现多次，则最后的索引会转换成对应的值
+	   (25) array_fill(int start,int num,mixed val)
+	   (26) array_count_values(array)  统计数组中元素的个数，返回一个数组，键时原数组的值，值为出现的次数
+	   (27) array_key_exists(key,array)检查索引是否存在于数组中
+	   (28) array_keys(array,[,searchvalue][,strict]) 获取所有的索引;array_values()，返回所有的元素，而不管是否重复
+	   (29) array_map(callbackfunc,arr1,arr2,...),数组的个数与回调函数的参数相同
+	   (30) array_filter(array,callbackfunc); 过滤数组中的元素，当回调函数返回true时，元素放到结果集中，键名保持不变。
+	   (31) in_array(var,array) var是否在array中
+	   (32) key(array) 返回当前元素的key
+	2、字符串内置函数
+	   (1) 分割合并 explode(separator,str[,limit]) 使用字符串separator分割字符串str，limit用于限制返回数组中最多有几个元素;implode(bds,array),将数组合并成字符串，使用bds链接元素
+	   (2) 比较和替换 strcmp(str1,str2) ;str_replace(search,replace,str),将str中search全部替换成replace，变形str_replace(searchArr,replaceArr,str),参数也可以是数组;substr_replace(string,replacement,start[,length]) 将string的start后的length长度(默认到结尾)的字符串替换为replacement，start和length可以为负数，表示从尾部开始,length为负数时表示倒数但是不包括倒数第length个。
+	   (3) 输出，print 严格的讲，print是语言结构，而不是函数，与echo的不同是print返回值是1，而echo没有返回值；echo可以打印多个string，而print只能打印一个string。
+	   (4) 格式化输出 sprintf(format,mixed args) ,类似于C 语言的格式化输出 
+类似的函数printf ，在这里假如使用$进行补齐，需要使用"'$"这样的写法
+	   (5) 获取子串 substr(string,start,length) 从string的start位置开始截取length长度的子字符串；strstr(string,needle,flag) 查找string中needle第一次出现的位置，并返回之后的所有字符（包括本字符）,若flag为true，则返回之前的所有字符（不包括本字符）；strchr() 同strstr；strrchr(string,needle，flag) string中needle最后一次出现的位置，返回之后的所有字符；strpos(string,needle[,start]) needle在string中第一次出现的位置。
+	  (6) 删除首位两端的多余字符，trim(),ltrim(),rtrim(),默认删除两端的空白字符，也可以自己指定。如trim(string,reStr)
+	  (7) 获取字符串长度 strlen(string) ,mb_strlen(string,encode)
+	  (8) 大小写转换 strtolower strtoupper
+	  (9) 处理html标记的字符串 htmlentities(string) htmlspecialchars();html_entity_decode(string) 将html实体解析成字符串
+	  (10) 重复生成字符串 str_repeat(string,num);str_pad(string,length,pad,pad_type) pad_type的值是常量，STR_PAD_LEFT,STR_PAD_RIGHT,STR_PAD_BOTH。使用pad在string的pad_type端补齐成长度为length的字符串。
+	  (11) 散列值 md5() sha1()
+	  (12) str_split(string[,split_length]) 将string分割成长度为length的子字符串并返回一个数组；split(regex,string) 支持正则，根据regex分割字符串string
+	
